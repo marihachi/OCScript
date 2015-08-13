@@ -15,7 +15,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		if (ifs.fail())
 		{
-			cerr << "読み込み失敗" << endl;
+			cerr << "読み込みに失敗しました" << endl;
 			return -1;
 		}
 

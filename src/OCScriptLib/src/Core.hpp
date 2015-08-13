@@ -42,7 +42,7 @@ namespace OCScript
 				{
 					m1 = smatch();
 					// 命令構文にマッチする場合
-					if (regex_match(scriptLine, m1, regex("^[ \t]*([a-zA-Z0-9._-]+)\\((.+)\\);[ \t]*$")))
+					if (regex_match(scriptLine, m1, regex("^[ \t]*([a-zA-Z0-9._-]+)[ \t]*\\((.+)\\)[ \t]*;[ \t]*$")))
 					{
 						string commandName = m1[1];
 						string paramsStr = m1[2];
