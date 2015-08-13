@@ -25,7 +25,14 @@ namespace OCScript
 			_Commands.push_back(command);
 		}
 
-		// スクリプトを読み込みます。
+		// 実行中行を変更します。
+		// 引数: 行の0から始まるインデックス
+		void SetLineIndex(int lineIndex)
+		{
+			_LineIndex = lineIndex;
+		}
+
+		// スクリプトを一括読み込みします。
 		// 引数: 行区切り文字列のベクタ
 		// ※例外が発生する可能性のあるメソッドです
 		void LoadScript(const vector<string> scriptLines)
@@ -74,7 +81,7 @@ namespace OCScript
 							else
 							{
 								m1 = smatch();
-								if (!regex_match(paramToken, m1, regex("^[ \t]*([a-zA-Z0-9._-]*)[ \t]*$")))
+								if (!regex_match(paramToken, m1, regex("^[ \t]*([^ \t]*)[ \t]*$")))
 								{
 									char message[256];
 									sprintf_s(message, "引数の解析時にエラーが発生しました。(行: %d, 引数番号: %d)", lineIndex, paramIndex);
@@ -99,7 +106,7 @@ namespace OCScript
 			}
 			_Lines = vector<Line>(lines);
 		}
-		// スクリプトを読み込みます。
+		// スクリプトを一括読み込みします。
 		// 引数: スクリプトの文字列
 		// ※例外が発生する可能性のあるメソッドです
 		void LoadScript(const string scriptText)
@@ -108,11 +115,10 @@ namespace OCScript
 			LoadScript(scriptLines);
 		}
 
-		// 実行中行を変更します。
-		// 引数: 行の0から始まるインデックス
-		void SetLineIndex(int lineIndex)
+		// 対象行の命令文を実行します。
+		void ExecuteScript()
 		{
-			_LineIndex = lineIndex;
+			
 		}
 	};
 }
