@@ -15,7 +15,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
 		if (ifs.fail())
 		{
-			cerr << "“Ç‚Ýž‚ÝŽ¸”s" << endl;
+			cerr << "èª­ã¿è¾¼ã¿å¤±æ•—" << endl;
 			return -1;
 		}
 
