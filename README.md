@@ -1,9 +1,9 @@
 # OCScript
 Original Command Script for C++
 
-すごく・・・OCです・・・
+Very... It's OC...
 
-ゲームのスクリプトか何かに使う事を想定して作っています。
+It's assumed to be used for the game.
 
 # License
 MIT License.
