@@ -3,6 +3,7 @@
   <ItemGroup>
     <Filter Include="src">
       <UniqueIdentifier>{5958d32a-2cd4-4f7c-b5c6-b64d92601f33}</UniqueIdentifier>
+      <Extensions>hpp;cpp</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
