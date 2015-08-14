@@ -96,7 +96,7 @@ namespace OCScript
 			_ScriptStorage = vector<Line>(lines);
 		}
 
-		// スクリプトを ScriptStorage に一括読み込みします。
+		// スクリプト文を ScriptStorage に一括読み込みします。
 		// 引数: スクリプトの文字列
 		// ※例外が発生する可能性のあるメソッドです
 		void LoadScript(const string scriptText)
