@@ -129,7 +129,7 @@ namespace OCScript
 
 			if (_CurrentLineIndex >= _ScriptStorage.size() - 1)
 			{
-
+				// TODO: 最後まで実行されたことを示すイベントを発生させる
 			}
 		}
 	};
