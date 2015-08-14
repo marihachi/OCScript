@@ -111,10 +111,10 @@ namespace OCScript
 		void ExecuteCurrentLine()
 		{
 			if (_ScriptStorage.empty())
-				throw("ScriptStorageの中身が空でした。");
+				throw exception("ScriptStorageの中身が空でした。");
 
 			if (_CurrentLineIndex > _ScriptStorage.size() - 1)
-				throw("スクリプトは最後まで実行されています。");
+				throw exception("スクリプトは最後まで実行されています。");
 
 			auto line = _ScriptStorage[_CurrentLineIndex];
 
