@@ -29,7 +29,7 @@ namespace OCScript
 
 		// 次に実行される行を変更します。
 		// 引数: 行の0から始まるインデックス
-		void SetCurrentLineIndex(int lineIndex)
+		void SetCurrentLineIndex(unsigned int lineIndex)
 		{
 			_CurrentLineIndex = lineIndex;
 		}
