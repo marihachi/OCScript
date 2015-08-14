@@ -3,23 +3,13 @@ using namespace std;
 
 #include <vector>
 #include <regex>
-
+#include "IEventHandler.hpp"
 #include "ICommand.hpp"
 #include "Line.hpp"
 #include "Utility.hpp"
 
 namespace OCScript
 {
-	// イベントハンドラを表します。
-	class IEventHandler
-	{
-	private:
-		virtual ~IEventHandler() {}
-
-		// 実行対象のメソッドを表します。
-		virtual void Target() = 0;
-	};
-
 	// OCScriptのコアクラスです。
 	class Core
 	{
@@ -27,7 +17,7 @@ namespace OCScript
 		vector<ICommand*> _Commands;
 
 		vector<Line> _ScriptStorage;
-		int _CurrentLineIndex;
+		unsigned int _CurrentLineIndex;
 	public:
 
 		// コマンドを追加します。

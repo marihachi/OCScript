@@ -21,5 +21,8 @@
     <ClInclude Include="src\Utility.hpp">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="IEventHandler.hpp">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
