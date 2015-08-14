@@ -5,7 +5,7 @@ namespace OCScript
 	// イベントハンドラを表します。
 	class IEventHandler
 	{
-	private:
+	public:
 		virtual ~IEventHandler() {}
 
 		// 実行対象のメソッドを表します。
