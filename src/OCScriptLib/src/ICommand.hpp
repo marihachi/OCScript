@@ -5,19 +5,37 @@ using namespace std;
 
 namespace OCScript
 {
-	/* スクリプト命令のインターフェイスクラスです。 */
-	class ICommand
+	// コマンドのアクセスメソッド用のイベントです。
+	class AccessEvent
+	{
+	private:
+		bool _IsCancelNextCommand;
+	public:
+		// コンストラクタ
+		AccessEvent()
+		{
+			_IsCancelNextCommand = false;
+		}
+		// 次のコマンドへの遷移をキャンセルします。
+		void CancelNextCommand()
+		{
+			_IsCancelNextCommand = true;
+		}
+	};
+
+	// スクリプト命令のインターフェイスクラスです。
+	class ICommandExecutable
 	{
 	public:
-		virtual ~ICommand() {}
-	public:
+		virtual ~ICommandExecutable() {}
+
 		// 命令名を取得します。
 		virtual string GetCommandName() = 0;
 		// コマンドにアクセスされた時に呼び出されます。
-		virtual void Access(vector<string> params) = 0;
-		// 更新するタイミングに呼び出されます。
-		virtual void Update() = 0;
-		// 描画するタイミングに呼び出されます。
-		virtual void Draw() = 0;
+		virtual void Access(AccessEvent e, vector<string> params) = 0;
+		// 更新前のタイミングに呼び出されます。
+		virtual void PreUpdate();
+		// 更新のタイミングに呼び出されます。
+		virtual void Update();
 	};
 }

@@ -14,13 +14,13 @@ namespace OCScript
 	class Core
 	{
 	private:
-		vector<ICommand*> _Commands;
+		vector<ICommandExecutable*> _Commands;
 		vector<Line> _Lines;
 		int _LineIndex;
 	public:
 		// –½—ß‚ğ’Ç‰Á‚µ‚Ü‚·B
 		// ˆø”: ICommand‚ğÀ‘•‚µ‚½–½—ß‚ÌƒNƒ‰ƒX
-		void AddCommand(ICommand *command)
+		void AddCommand(ICommandExecutable *command)
 		{
 			_Commands.push_back(command);
 		}
