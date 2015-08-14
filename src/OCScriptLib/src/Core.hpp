@@ -10,18 +10,29 @@ using namespace std;
 
 namespace OCScript
 {
+	// イベントハンドラを表します。
+	class IEventHandler
+	{
+	private:
+		virtual ~IEventHandler() {}
+
+		// 実行対象のメソッドを表します。
+		virtual void Target() = 0;
+	};
+
 	// OCScriptのコアクラスです。
 	class Core
 	{
 	private:
-		vector<ICommandExecutable*> _Commands;
+		vector<ICommand*> _Commands;
+
 		vector<Line> _ScriptStorage;
 		int _CurrentLineIndex;
 	public:
 
 		// コマンドを追加します。
 		// 引数: ICommandExecutableを実装したコマンドのクラス
-		void AddCommand(ICommandExecutable *command)
+		void AddCommand(ICommand *command)
 		{
 			_Commands.push_back(command);
 		}
@@ -45,7 +56,7 @@ namespace OCScript
 			{
 				smatch m1, m2;
 
-				// 空行ではない
+				// 空行でない
 				if (!regex_match(scriptLine, regex("^[ \t]*$")))
 				{
 					m1 = smatch();
@@ -106,10 +117,30 @@ namespace OCScript
 		}
 
 		// 実行の対象となっているスクリプト文を実行します。
+		// ※例外が発生する可能性のあるメソッドです
 		void ExecuteCurrentLine()
 		{
 			if (_ScriptStorage.empty())
 				throw("ScriptStorageの中身が空でした。");
+
+			if (_CurrentLineIndex > _ScriptStorage.size() - 1)
+				throw("スクリプトは最後まで実行されています。");
+
+			auto line = _ScriptStorage[_CurrentLineIndex];
+
+			for (auto command : _Commands)
+				if (line.GetCommandName() == command->GetCommandName())
+				{
+					AccessEventArgs accessEventArgs;
+					command->Access(&accessEventArgs, line.GetParams());
+					if (!accessEventArgs.GetIsCancelNextCommand())
+						_CurrentLineIndex++;
+				}
+
+			if (_CurrentLineIndex >= _ScriptStorage.size() - 1)
+			{
+
+			}
 		}
 	};
 }

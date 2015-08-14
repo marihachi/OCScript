@@ -5,15 +5,15 @@ using namespace std;
 
 namespace OCScript
 {
-	// コマンドのアクセスメソッド用のイベントです。
-	class AccessEvent
+	// コマンドのアクセスメソッド用のイベント引数です。
+	class AccessEventArgs
 	{
 	private:
 		bool _IsCancelNextCommand;
 	public:
 
 		// コンストラクタ
-		AccessEvent()
+		AccessEventArgs()
 		{
 			_IsCancelNextCommand = false;
 		}
@@ -23,19 +23,25 @@ namespace OCScript
 		{
 			_IsCancelNextCommand = true;
 		}
+
+		// IsCancelNextCommand の値を取得します。
+		bool GetIsCancelNextCommand()
+		{
+			return _IsCancelNextCommand;
+		}
 	};
 
 	// スクリプト命令のインターフェイスクラスです。
-	class ICommandExecutable
+	class ICommand
 	{
 	public:
-		virtual ~ICommandExecutable() {}
+		virtual ~ICommand() {}
 
 		// 命令名を取得します。
 		virtual string GetCommandName() = 0;
 
 		// コマンドにアクセスされた時に呼び出されます。
-		virtual void Access(AccessEvent e, vector<string> params) = 0;
+		virtual void Access(AccessEventArgs *e, vector<string> params) = 0;
 		
 		// 更新前のタイミングに呼び出されます。
 		virtual void PreUpdate();
