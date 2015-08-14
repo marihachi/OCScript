@@ -37,9 +37,9 @@ namespace OCScript
 		// ※例外が発生する可能性のあるメソッドです
 		void LoadScript(const vector<string> scriptLines)
 		{
-			int lineIndex = 1;
 			vector<Line> lines;
 
+			int lineIndex = 1;
 			for (auto scriptLine : scriptLines)
 			{
 				smatch m1, m2;
