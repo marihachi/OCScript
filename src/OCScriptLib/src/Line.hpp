@@ -5,13 +5,14 @@ using namespace std;
 
 namespace OCScript
 {
-	/* スクリプトの内部的な行を表します。 */
+	// スクリプト文を表します。
 	class Line
 	{
 	private:
 		string _CommandName;
 		vector<string> _Params;
 	public:
+
 		// コンストラクタ
 		// 引数: 命令名, パラメータ
 		Line(string commandName, vector<string> params)
@@ -19,11 +20,13 @@ namespace OCScript
 			_CommandName = commandName;
 			_Params = params;
 		}
-		// 命令名を取得します。
+
+		// コマンド名を取得します。
 		string GetCommandName()
 		{
 			return _CommandName;
 		}
+		
 		// パラメータを取得します。
 		vector<string> GetParams()
 		{
