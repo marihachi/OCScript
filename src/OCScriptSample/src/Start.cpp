@@ -56,12 +56,12 @@ int wmain(int argc, wchar_t* argv[])
 			wcerr << L"ファイルオープンに失敗しました" << endl;
 			return -1;
 		}
-		
+
 		try
 		{
 			// コマンド登録
 			osc.AddCommand(&test);
-		
+
 			// スクリプトの読み込み
 			osc.LoadScript(rawLines);
 		}
