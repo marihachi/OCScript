@@ -125,7 +125,7 @@ namespace OCScript
 			LoadScript(scriptLines);
 		}
 
-		// 実行の対象となっているスクリプト文を実行します。
+		// 現在の行のスクリプト文を実行して行を進めます。
 		// ※例外が発生する可能性のあるメソッドです
 		void ExecuteCurrentLine()
 		{
