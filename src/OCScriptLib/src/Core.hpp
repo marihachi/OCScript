@@ -40,13 +40,13 @@ namespace OCScript
 			_Commands.push_back(command);
 		}
 
-		// スクリプトが終了したかどうかを取得します。
+		// スクリプトを実行し終えたかどうかを示す値を取得します。
 		bool IsEndOfScript()
 		{
 			return _IsEndOfScript;
 		}
 
-		// 次に実行される行を変更します。
+		// 次に実行される行を設定します。
 		// 引数: 行の0から始まるインデックス
 		void SetCurrentLineIndex(unsigned int lineIndex)
 		{

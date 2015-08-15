@@ -40,7 +40,7 @@ namespace OCScript
 		// 命令名を取得します。
 		virtual wstring GetCommandName() = 0;
 
-		// コマンドにアクセスされた時に呼び出されます。
+		// コマンドにアクセスされたタイミングに呼び出されます。
 		virtual void Access(AccessEventArgs *e, vector<wstring> params) = 0;
 		
 		// 更新前のタイミングに呼び出されます。
