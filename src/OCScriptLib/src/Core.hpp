@@ -1,6 +1,8 @@
 #pragma once
 using namespace std;
 
+#include <iostream>
+
 #include <vector>
 #include <regex>
 #include "IEventHandler.hpp"
@@ -15,16 +17,32 @@ namespace OCScript
 	{
 	private:
 		vector<ICommand*> _Commands;
-
+		IEventHandler *_OnCompleteEvent;
 		vector<Line> _ScriptStorage;
 		unsigned int _CurrentLineIndex;
 	public:
 
-		// コマンドを追加します。
+		// コンストラクタ
+		Core()
+		{
+			_OnCompleteEvent = 0;
+			_CurrentLineIndex = 0;
+		}
+
+		// コマンドを登録します。
 		// 引数: ICommandExecutableを実装したコマンドのクラス
+		// ※例外が発生する可能性のあるメソッドです
 		void AddCommand(ICommand *command)
 		{
+			if (regex_match(command->GetCommandName(), regex("[ \t]*$")))
+				throw exception("コマンド名が不正です。");
+
 			_Commands.push_back(command);
+		}
+
+		void SetOnCompleteEvent(IEventHandler *ev)
+		{
+			_OnCompleteEvent = ev;
 		}
 
 		// 次に実行される行を変更します。
@@ -118,18 +136,30 @@ namespace OCScript
 
 			auto line = _ScriptStorage[_CurrentLineIndex];
 
+			bool isFoundCommand = false;
 			for (auto command : _Commands)
+			{
+				cout << (*command).GetCommandName() << endl;
+
 				if (line.GetCommandName() == command->GetCommandName())
 				{
+					isFoundCommand = true;
 					AccessEventArgs accessEventArgs;
 					command->Access(&accessEventArgs, line.GetParams());
 					if (!accessEventArgs.GetIsCancelNextCommand())
 						_CurrentLineIndex++;
 				}
+			}
+
+			if (!isFoundCommand)
+				throw exception("未定義のスクリプト文が呼び出されました。");
 
 			if (_CurrentLineIndex > _ScriptStorage.size() - 1)
 			{
-				// TODO: 最後まで実行されたことを示すイベントを発生させる
+				if (_OnCompleteEvent != 0)
+				{
+					_OnCompleteEvent->Target();
+				}
 			}
 		}
 	};

@@ -44,9 +44,9 @@ namespace OCScript
 		virtual void Access(AccessEventArgs *e, vector<string> params) = 0;
 		
 		// 更新前のタイミングに呼び出されます。
-		virtual void PreUpdate();
+		virtual void PreUpdate(){}
 		
 		// 更新のタイミングに呼び出されます。
-		virtual void Update();
+		virtual void Update(){}
 	};
 }
