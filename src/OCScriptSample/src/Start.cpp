@@ -13,16 +13,15 @@ public:
 
 	void Access(OCScript::AccessEventArgs *e, vector<string> params)
 	{
-		printf_s("Testが呼び出されました");
+		cout << "Testが呼び出されました" << endl;
 	}
 };
 
 int main(int argc, char* argv[])
 {
-	//if (argc == 2)
-	//{
-		//ifstream ifs(argv[1]);
-		ifstream ifs("D:\\git\\OCScript\\src\\Debug\\script.txt");
+	if (argc == 2)
+	{
+		ifstream ifs(argv[1]);
 		char str[256];
 		vector<string> scriptVec;
 		OCScript::Core osc;
@@ -55,6 +54,6 @@ int main(int argc, char* argv[])
 			cerr << ex.what() << endl;
 			return -1;
 		}
-	//}
+	}
 	return 0;
 }
