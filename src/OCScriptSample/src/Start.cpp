@@ -1,6 +1,5 @@
 ﻿#include <fstream>
 #include <iostream>
-#include <tchar.h>
 
 #include "../../OCScriptLib/src/OCScript.hpp"
 

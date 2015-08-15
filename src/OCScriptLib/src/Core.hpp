@@ -2,9 +2,9 @@
 using namespace std;
 
 #include <iostream>
-
 #include <vector>
 #include <regex>
+
 #include "IEventHandler.hpp"
 #include "ICommand.hpp"
 #include "Line.hpp"
