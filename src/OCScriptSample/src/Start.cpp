@@ -1,5 +1,6 @@
 ﻿#include <fstream>
 #include <iostream>
+#include <tchar.h>
 
 #include "../../OCScriptLib/src/OCScript.hpp"
 
@@ -17,26 +18,24 @@ public:
 	}
 };
 
-int main(int argc, char* argv[])
+int _tmain(int argc, _TCHAR* argv[])
 {
 	if (argc == 2)
 	{
-		ifstream ifs(argv[1]);
-		char str[256];
-		vector<string> scriptVec;
 		OCScript::Core osc;
 
-		cout << "読み込みに失敗しました" << endl;
+		Test test;
 
+		ifstream ifs(argv[1]);
 		if (ifs.fail())
 		{
 			cerr << "読み込みに失敗しました" << endl;
 			return -1;
 		}
-		while (ifs.getline(str, 255))
-			scriptVec.push_back(str);
-
-		Test test;
+		char str[256];
+		vector<string> rawLines;
+		while (ifs.getline(str, sizeof(str)))
+			rawLines.push_back(str);
 
 		try
 		{
@@ -44,16 +43,15 @@ int main(int argc, char* argv[])
 			osc.AddCommand(&test);
 
 			// スクリプトの読み込み
-			osc.LoadScript(scriptVec);
-
-			// 1行だけ実行
-			osc.ExecuteCurrentLine();
+			osc.LoadScript(rawLines);
 		}
 		catch (exception ex)
 		{
 			cerr << ex.what() << endl;
 			return -1;
 		}
+		// 1行だけ実行
+		osc.ExecuteCurrentLine();
 	}
 	return 0;
 }
