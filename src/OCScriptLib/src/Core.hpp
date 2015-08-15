@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 using namespace std;
 
 #include <iostream>
@@ -12,7 +12,7 @@ using namespace std;
 
 namespace OCScript
 {
-	// OCScript‚ÌƒRƒAƒNƒ‰ƒX‚Å‚·B
+	// OCScriptã®ã‚³ã‚¢ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 	class Core
 	{
 	private:
@@ -22,20 +22,20 @@ namespace OCScript
 		unsigned int _CurrentLineIndex;
 	public:
 
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		Core()
 		{
 			_OnCompleteEvent = 0;
 			_CurrentLineIndex = 0;
 		}
 
-		// ƒRƒ}ƒ“ƒh‚ğ“o˜^‚µ‚Ü‚·B
-		// ˆø”: ICommandExecutable‚ğÀ‘•‚µ‚½ƒRƒ}ƒ“ƒh‚ÌƒNƒ‰ƒX
-		// ¦—áŠO‚ª”­¶‚·‚é‰Â”\«‚Ì‚ ‚éƒƒ\ƒbƒh‚Å‚·
+		// ã‚³ãƒãƒ³ãƒ‰ã‚’ç™»éŒ²ã—ã¾ã™ã€‚
+		// å¼•æ•°: ICommandExecutableã‚’å®Ÿè£…ã—ãŸã‚³ãƒãƒ³ãƒ‰ã®ã‚¯ãƒ©ã‚¹
+		// â€»ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã§ã™
 		void AddCommand(ICommand *command)
 		{
 			if (regex_match(command->GetCommandName(), regex("[ \t]*$")))
-				throw exception("ƒRƒ}ƒ“ƒh–¼‚ª•s³‚Å‚·B");
+				throw exception("ã‚³ãƒãƒ³ãƒ‰åãŒä¸æ­£ã§ã™ã€‚");
 
 			_Commands.push_back(command);
 		}
@@ -45,16 +45,16 @@ namespace OCScript
 			_OnCompleteEvent = ev;
 		}
 
-		// Ÿ‚ÉÀs‚³‚ê‚és‚ğ•ÏX‚µ‚Ü‚·B
-		// ˆø”: s‚Ì0‚©‚çn‚Ü‚éƒCƒ“ƒfƒbƒNƒX
+		// æ¬¡ã«å®Ÿè¡Œã•ã‚Œã‚‹è¡Œã‚’å¤‰æ›´ã—ã¾ã™ã€‚
+		// å¼•æ•°: è¡Œã®0ã‹ã‚‰å§‹ã¾ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹
 		void SetCurrentLineIndex(unsigned int lineIndex)
 		{
 			_CurrentLineIndex = lineIndex;
 		}
 
-		// ƒXƒNƒŠƒvƒg•¶‚ğ ScriptStorage ‚ÉˆêŠ‡“Ç‚İ‚İ‚µ‚Ü‚·B
-		// ˆø”: s‹æØ‚è•¶š—ñ‚ÌƒxƒNƒ^
-		// ¦—áŠO‚ª”­¶‚·‚é‰Â”\«‚Ì‚ ‚éƒƒ\ƒbƒh‚Å‚·
+		// ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ–‡ã‚’ ScriptStorage ã«ä¸€æ‹¬èª­ã¿è¾¼ã¿ã—ã¾ã™ã€‚
+		// å¼•æ•°: è¡ŒåŒºåˆ‡ã‚Šæ–‡å­—åˆ—ã®ãƒ™ã‚¯ã‚¿
+		// â€»ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã§ã™
 		void LoadScript(const vector<string> scriptLines)
 		{
 			vector<Line> lines;
@@ -64,12 +64,12 @@ namespace OCScript
 			{
 				smatch m1, m2;
 
-				// ‹ós‚Å‚È‚¢
+				// ç©ºè¡Œã§ãªã„
 				if (!regex_match(scriptLine, regex("^[ \t]*$")))
 				{
 					m1 = smatch();
 
-					// \•¶‚Éƒ}ƒbƒ`‚·‚é
+					// æ§‹æ–‡ã«ãƒãƒƒãƒã™ã‚‹
 					if (regex_match(scriptLine, m1, regex("^[ \t]*([a-zA-Z0-9._-]+)[ \t]*\\((.+)\\)[ \t]*;[ \t]*$")))
 					{
 						string commandName = m1[1];
@@ -84,7 +84,7 @@ namespace OCScript
 							m1 = smatch();
 							m2 = smatch();
 
-							// ƒNƒH[ƒg•t‚«‚Ìˆø”‚Å‚ ‚é
+							// ã‚¯ã‚©ãƒ¼ãƒˆä»˜ãã®å¼•æ•°ã§ã‚ã‚‹
 							if (regex_match(paramToken, m1, regex("^[ \t]*\"(.*)\"[ \t]*$")) || regex_match(paramToken, m2, regex("^[ \t]*\'(.*)\'[ \t]*$")))
 							{
 								if (!m1.empty())
@@ -92,13 +92,13 @@ namespace OCScript
 								else if (!m2.empty())
 									content = m2[1];
 								else
-									throw exception(("ƒVƒXƒeƒ€ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½Bƒ}ƒbƒ`Œ‹‰Ê‚ª–µ‚‚µ‚Ä‚¢‚Ü‚·B(s: " + to_string(lineIndex) + ")").c_str());
+									throw exception(("ã‚·ã‚¹ãƒ†ãƒ ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚ãƒãƒƒãƒçµæœãŒçŸ›ç›¾ã—ã¦ã„ã¾ã™ã€‚(è¡Œ: " + to_string(lineIndex) + ")").c_str());
 							}
 							else
 							{
 								m1 = smatch();
 								if (!regex_match(paramToken, m1, regex("^[ \t]*([^ \t]*)[ \t]*$")))
-									throw exception(("ˆø”‚Ì‰ğÍ‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B(s: " + to_string(lineIndex) + ", ˆø””Ô†: " + to_string(paramIndex) + ")").c_str());
+									throw exception(("å¼•æ•°ã®è§£ææ™‚ã«ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚(è¡Œ: " + to_string(lineIndex) + ", å¼•æ•°ç•ªå·: " + to_string(paramIndex) + ")").c_str());
 
 								content = m1[1];
 							}
@@ -108,39 +108,37 @@ namespace OCScript
 						lines.push_back(Line(commandName, paramsDestVec));
 					}
 					else
-						throw exception(("\•¶ƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B(s: " + to_string(lineIndex) + ")").c_str());
+						throw exception(("æ§‹æ–‡ã‚¨ãƒ©ãƒ¼ãŒç™ºç”Ÿã—ã¾ã—ãŸã€‚(è¡Œ: " + to_string(lineIndex) + ")").c_str());
 				}
 				lineIndex++;
 			}
 			_ScriptStorage = vector<Line>(lines);
 		}
 
-		// ƒXƒNƒŠƒvƒg•¶‚ğ ScriptStorage ‚ÉˆêŠ‡“Ç‚İ‚İ‚µ‚Ü‚·B
-		// ˆø”: ƒXƒNƒŠƒvƒg‚Ì•¶š—ñ
-		// ¦—áŠO‚ª”­¶‚·‚é‰Â”\«‚Ì‚ ‚éƒƒ\ƒbƒh‚Å‚·
+		// ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ–‡ã‚’ ScriptStorage ã«ä¸€æ‹¬èª­ã¿è¾¼ã¿ã—ã¾ã™ã€‚
+		// å¼•æ•°: ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®æ–‡å­—åˆ—
+		// â€»ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã§ã™
 		void LoadScript(const string scriptText)
 		{
 			vector<string> scriptLines = Utility::StrSplit(scriptText, '\n');
 			LoadScript(scriptLines);
 		}
 
-		// Às‚Ì‘ÎÛ‚Æ‚È‚Á‚Ä‚¢‚éƒXƒNƒŠƒvƒg•¶‚ğÀs‚µ‚Ü‚·B
-		// ¦—áŠO‚ª”­¶‚·‚é‰Â”\«‚Ì‚ ‚éƒƒ\ƒbƒh‚Å‚·
+		// å®Ÿè¡Œã®å¯¾è±¡ã¨ãªã£ã¦ã„ã‚‹ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ–‡ã‚’å®Ÿè¡Œã—ã¾ã™ã€‚
+		// â€»ä¾‹å¤–ãŒç™ºç”Ÿã™ã‚‹å¯èƒ½æ€§ã®ã‚ã‚‹ãƒ¡ã‚½ãƒƒãƒ‰ã§ã™
 		void ExecuteCurrentLine()
 		{
 			if (_ScriptStorage.empty())
-				throw exception("ScriptStorage‚Ì’†g‚ª‹ó‚Å‚µ‚½B");
+				throw exception("ScriptStorageã®ä¸­èº«ãŒç©ºã§ã—ãŸã€‚");
 
 			if (_CurrentLineIndex > _ScriptStorage.size() - 1)
-				throw exception("ƒXƒNƒŠƒvƒg‚ÍÅŒã‚Ü‚ÅÀs‚³‚ê‚Ä‚¢‚Ü‚·B");
+				throw exception("ã‚¹ã‚¯ãƒªãƒ—ãƒˆã¯æœ€å¾Œã¾ã§å®Ÿè¡Œã•ã‚Œã¦ã„ã¾ã™ã€‚");
 
 			auto line = _ScriptStorage[_CurrentLineIndex];
 
 			bool isFoundCommand = false;
 			for (auto command : _Commands)
 			{
-				cout << (*command).GetCommandName() << endl;
-
 				if (line.GetCommandName() == command->GetCommandName())
 				{
 					isFoundCommand = true;
@@ -152,7 +150,7 @@ namespace OCScript
 			}
 
 			if (!isFoundCommand)
-				throw exception("–¢’è‹`‚ÌƒXƒNƒŠƒvƒg•¶‚ªŒÄ‚Ño‚³‚ê‚Ü‚µ‚½B");
+				throw exception("æœªå®šç¾©ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ–‡ãŒå‘¼ã³å‡ºã•ã‚Œã¾ã—ãŸã€‚");
 
 			if (_CurrentLineIndex > _ScriptStorage.size() - 1)
 			{

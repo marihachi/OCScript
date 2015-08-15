@@ -1,5 +1,4 @@
-#include <tchar.h>
-#include <fstream>
+﻿#include <fstream>
 #include <iostream>
 
 #include "../../OCScriptLib/src/OCScript.hpp"
@@ -7,18 +6,18 @@
 class Test : public OCScript::ICommand
 {
 public:
-	virtual string GetCommandName()
+	string GetCommandName()
 	{
 		return "Test";
 	}
 
-	virtual void Access(OCScript::AccessEventArgs *e, vector<string> params)
+	void Access(OCScript::AccessEventArgs *e, vector<string> params)
 	{
-
+		printf_s("Testが呼び出されました");
 	}
 };
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
 	//if (argc == 2)
 	//{
@@ -28,6 +27,8 @@ int _tmain(int argc, _TCHAR* argv[])
 		vector<string> scriptVec;
 		OCScript::Core osc;
 
+		cout << "読み込みに失敗しました" << endl;
+
 		if (ifs.fail())
 		{
 			cerr << "読み込みに失敗しました" << endl;
@@ -36,14 +37,17 @@ int _tmain(int argc, _TCHAR* argv[])
 		while (ifs.getline(str, 255))
 			scriptVec.push_back(str);
 
+		Test test;
+
 		try
 		{
 			// コマンド登録
-			osc.AddCommand(&Test());
+			osc.AddCommand(&test);
 
 			// スクリプトの読み込み
 			osc.LoadScript(scriptVec);
 
+			// 1行だけ実行
 			osc.ExecuteCurrentLine();
 		}
 		catch (exception ex)

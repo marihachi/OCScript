@@ -1,52 +1,52 @@
-#pragma once
+ï»¿#pragma once
 using namespace std;
 
 #include <vector>
 
 namespace OCScript
 {
-	// ƒRƒ}ƒ“ƒh‚ÌƒAƒNƒZƒXƒƒ\ƒbƒh—p‚ÌƒCƒxƒ“ƒgˆø”‚Å‚·B
+	// ã‚³ãƒãƒ³ãƒ‰ã®ã‚¢ã‚¯ã‚»ã‚¹ãƒ¡ã‚½ãƒƒãƒ‰ç”¨ã®ã‚¤ãƒ™ãƒ³ãƒˆå¼•æ•°ã§ã™ã€‚
 	class AccessEventArgs
 	{
 	private:
 		bool _IsCancelNextCommand;
 	public:
 
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 		AccessEventArgs()
 		{
 			_IsCancelNextCommand = false;
 		}
 		
-		// Ÿ‚ÌƒRƒ}ƒ“ƒh‚Ö‚Ì‘JˆÚ‚ğƒLƒƒƒ“ƒZƒ‹‚µ‚Ü‚·B
+		// æ¬¡ã®ã‚³ãƒãƒ³ãƒ‰ã¸ã®é·ç§»ã‚’ã‚­ãƒ£ãƒ³ã‚»ãƒ«ã—ã¾ã™ã€‚
 		void CancelNextCommand()
 		{
 			_IsCancelNextCommand = true;
 		}
 
-		// IsCancelNextCommand ‚Ì’l‚ğæ“¾‚µ‚Ü‚·B
+		// IsCancelNextCommand ã®å€¤ã‚’å–å¾—ã—ã¾ã™ã€‚
 		bool GetIsCancelNextCommand()
 		{
 			return _IsCancelNextCommand;
 		}
 	};
 
-	// ƒXƒNƒŠƒvƒg–½—ß‚ÌƒCƒ“ƒ^[ƒtƒFƒCƒXƒNƒ‰ƒX‚Å‚·B
+	// ã‚¹ã‚¯ãƒªãƒ—ãƒˆå‘½ä»¤ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 	class ICommand
 	{
 	public:
 		virtual ~ICommand() {}
 
-		// –½—ß–¼‚ğæ“¾‚µ‚Ü‚·B
+		// å‘½ä»¤åã‚’å–å¾—ã—ã¾ã™ã€‚
 		virtual string GetCommandName() = 0;
 
-		// ƒRƒ}ƒ“ƒh‚ÉƒAƒNƒZƒX‚³‚ê‚½‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
+		// ã‚³ãƒãƒ³ãƒ‰ã«ã‚¢ã‚¯ã‚»ã‚¹ã•ã‚ŒãŸæ™‚ã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
 		virtual void Access(AccessEventArgs *e, vector<string> params) = 0;
 		
-		// XV‘O‚Ìƒ^ƒCƒ~ƒ“ƒO‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
+		// æ›´æ–°å‰ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
 		virtual void PreUpdate(){}
 		
-		// XV‚Ìƒ^ƒCƒ~ƒ“ƒO‚ÉŒÄ‚Ño‚³‚ê‚Ü‚·B
+		// æ›´æ–°ã®ã‚¿ã‚¤ãƒŸãƒ³ã‚°ã«å‘¼ã³å‡ºã•ã‚Œã¾ã™ã€‚
 		virtual void Update(){}
 	};
 }

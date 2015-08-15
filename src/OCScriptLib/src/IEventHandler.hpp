@@ -1,14 +1,14 @@
-#pragma once
+ï»¿#pragma once
 
 namespace OCScript
 {
-	// ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰‚ğ•\‚µ‚Ü‚·B
+	// ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ã‚’è¡¨ã—ã¾ã™ã€‚
 	class IEventHandler
 	{
 	public:
 		virtual ~IEventHandler() {}
 
-		// Às‘ÎÛ‚Ìƒƒ\ƒbƒh‚ğ•\‚µ‚Ü‚·B
+		// å®Ÿè¡Œå¯¾è±¡ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’è¡¨ã—ã¾ã™ã€‚
 		virtual void Target() = 0;
 	};
 }

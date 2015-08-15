@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 using namespace std;
 
 #include <vector>
@@ -6,12 +6,12 @@ using namespace std;
 
 namespace OCScript
 {
-	// •Ö—˜‚È‹@”\‚ğ‚Ü‚Æ‚ß‚½ƒNƒ‰ƒX‚Å‚·B
+	// ä¾¿åˆ©ãªæ©Ÿèƒ½ã‚’ã¾ã¨ã‚ãŸã‚¯ãƒ©ã‚¹ã§ã™ã€‚
 	class Utility
 	{
 	public:
-		// ‹æØ‚è•¶š‚É‚æ‚è•¶š—ñ‚ğƒXƒvƒŠƒbƒg‚µ‚Ü‚·B
-		// ˆø”: ƒ\[ƒX•¶š—ñ, ‹æØ‚è•¶š
+		// åŒºåˆ‡ã‚Šæ–‡å­—ã«ã‚ˆã‚Šæ–‡å­—åˆ—ã‚’ã‚¹ãƒ—ãƒªãƒƒãƒˆã—ã¾ã™ã€‚
+		// å¼•æ•°: ã‚½ãƒ¼ã‚¹æ–‡å­—åˆ—, åŒºåˆ‡ã‚Šæ–‡å­—
 		static vector<string> StrSplit(const string &src, char delimiter)
 		{
 			stringstream ss(src);
@@ -24,8 +24,8 @@ namespace OCScript
 			return items;
 		}
 
-		// •¶š—ñ‚ğ’uŠ·‚µ‚ÄV‚µ‚¢•¶š—ñ‚Æ‚µ‚Ä•Ô‚µ‚Ü‚·B
-		// ˆø”: ƒ\[ƒX•¶š—ñ, ‘ÎÛ‚Ì•¶š—ñ, ’uŠ·Œã‚Ì•¶š—ñ
+		// æ–‡å­—åˆ—ã‚’ç½®æ›ã—ã¦æ–°ã—ã„æ–‡å­—åˆ—ã¨ã—ã¦è¿”ã—ã¾ã™ã€‚
+		// å¼•æ•°: ã‚½ãƒ¼ã‚¹æ–‡å­—åˆ—, å¯¾è±¡ã®æ–‡å­—åˆ—, ç½®æ›å¾Œã®æ–‡å­—åˆ—
 		static string StrReplace(const string src, const string oldVal, const string newVal)
 		{
 			auto temp = src;

@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 using namespace std;
 
 #include <vector>
 
 namespace OCScript
 {
-	// ƒXƒNƒŠƒvƒg•¶‚ğ•\‚µ‚Ü‚·B
+	// ã‚¹ã‚¯ãƒªãƒ—ãƒˆæ–‡ã‚’è¡¨ã—ã¾ã™ã€‚
 	class Line
 	{
 	private:
@@ -13,21 +13,21 @@ namespace OCScript
 		vector<string> _Params;
 	public:
 
-		// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-		// ˆø”: –½—ß–¼, ƒpƒ‰ƒ[ƒ^
+		// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+		// å¼•æ•°: å‘½ä»¤å, ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
 		Line(string commandName, vector<string> params)
 		{
 			_CommandName = commandName;
 			_Params = params;
 		}
 
-		// ƒRƒ}ƒ“ƒh–¼‚ğæ“¾‚µ‚Ü‚·B
+		// ã‚³ãƒãƒ³ãƒ‰åã‚’å–å¾—ã—ã¾ã™ã€‚
 		string GetCommandName()
 		{
 			return _CommandName;
 		}
 		
-		// ƒpƒ‰ƒ[ƒ^‚ğæ“¾‚µ‚Ü‚·B
+		// ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’å–å¾—ã—ã¾ã™ã€‚
 		vector<string> GetParams()
 		{
 			return _Params;
