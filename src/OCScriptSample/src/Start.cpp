@@ -5,7 +5,15 @@
 
 class Test : public OCScript::ICommand
 {
+private:
+	Test() { }
 public:
+	static Test& GetInstance()
+	{
+		static Test instance;
+		return instance;
+	}
+
 	wstring GetCommandName()
 	{
 		return L"Test";
@@ -27,8 +35,6 @@ int wmain(int argc, wchar_t* argv[])
 	if (argc == 2)
 	{
 		OCScript::Core osc;
-
-		Test test;
 
 		vector<wstring> rawLines;
 
@@ -59,18 +65,22 @@ int wmain(int argc, wchar_t* argv[])
 		try
 		{
 			// コマンド登録
-			osc.AddCommand(&test);
+			osc.AddCommand(&Test::GetInstance());
 
 			// スクリプトの読み込み
 			osc.LoadScript(rawLines);
+
+			while (!osc.IsEndOfScript())
+			{
+				// 現在の行を実行
+				osc.ExecuteCurrentLine();
+			}
 		}
 		catch (exception ex)
 		{
 			cerr << ex.what() << endl;
 			return -1;
 		}
-		// 1行だけ実行
-		osc.ExecuteCurrentLine();
 	}
 	return 0;
 }

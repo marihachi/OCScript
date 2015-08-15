@@ -17,7 +17,7 @@ namespace OCScript
 	{
 	private:
 		vector<ICommand*> _Commands;
-		IEventHandler *_OnCompleteEvent;
+		bool _IsEndOfScript;
 		vector<Line> _ScriptStorage;
 		unsigned int _CurrentLineIndex;
 	public:
@@ -25,7 +25,7 @@ namespace OCScript
 		// コンストラクタ
 		Core()
 		{
-			_OnCompleteEvent = 0;
+			_IsEndOfScript = true;
 			_CurrentLineIndex = 0;
 		}
 
@@ -40,10 +40,10 @@ namespace OCScript
 			_Commands.push_back(command);
 		}
 
-		//
-		void SetOnCompleteEvent(IEventHandler *ev)
+		// スクリプトが終了したかどうかを取得します。
+		bool IsEndOfScript()
 		{
-			_OnCompleteEvent = ev;
+			return _IsEndOfScript;
 		}
 
 		// 次に実行される行を変更します。
@@ -114,6 +114,7 @@ namespace OCScript
 				lineIndex++;
 			}
 			_ScriptStorage = vector<Line>(lines);
+			_IsEndOfScript = (_CurrentLineIndex > _ScriptStorage.size() - 1);
 		}
 		// スクリプト文を ScriptStorage に一括読み込みします。
 		// 引数: スクリプトの文字列
@@ -152,13 +153,7 @@ namespace OCScript
 			if (!isFoundCommand)
 				throw exception("未定義のスクリプト文が呼び出されました。");
 
-			if (_CurrentLineIndex > _ScriptStorage.size() - 1)
-			{
-				if (_OnCompleteEvent != 0)
-				{
-					_OnCompleteEvent->Target();
-				}
-			}
+			_IsEndOfScript = (_CurrentLineIndex > _ScriptStorage.size() - 1);
 		}
 	};
 }
