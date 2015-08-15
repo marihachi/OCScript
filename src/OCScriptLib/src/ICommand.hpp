@@ -38,10 +38,10 @@ namespace OCScript
 		virtual ~ICommand() {}
 
 		// 命令名を取得します。
-		virtual string GetCommandName() = 0;
+		virtual wstring GetCommandName() = 0;
 
 		// コマンドにアクセスされた時に呼び出されます。
-		virtual void Access(AccessEventArgs *e, vector<string> params) = 0;
+		virtual void Access(AccessEventArgs *e, vector<wstring> params) = 0;
 		
 		// 更新前のタイミングに呼び出されます。
 		virtual void PreUpdate(){}

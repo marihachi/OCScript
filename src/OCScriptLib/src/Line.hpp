@@ -9,25 +9,25 @@ namespace OCScript
 	class Line
 	{
 	private:
-		string _CommandName;
-		vector<string> _Params;
+		wstring _CommandName;
+		vector<wstring> _Params;
 	public:
 		// コンストラクタ
 		// 引数: 命令名, パラメータ
-		Line(string commandName, vector<string> params)
+		Line(wstring commandName, vector<wstring> params)
 		{
 			_CommandName = commandName;
 			_Params = params;
 		}
 
 		// コマンド名を取得します。
-		string GetCommandName()
+		wstring GetCommandName()
 		{
 			return _CommandName;
 		}
 		
 		// パラメータを取得します。
-		vector<string> GetParams()
+		vector<wstring> GetParams()
 		{
 			return _Params;
 		}

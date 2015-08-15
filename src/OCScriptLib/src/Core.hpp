@@ -34,12 +34,13 @@ namespace OCScript
 		// ※例外が発生する可能性のあるメソッドです
 		void AddCommand(ICommand *command)
 		{
-			if (regex_match(command->GetCommandName(), regex("[ \t]*$")))
+			if (regex_match(command->GetCommandName(), wregex(L"[ \t]*$")))
 				throw exception("コマンド名が不正です。");
 
 			_Commands.push_back(command);
 		}
 
+		//
 		void SetOnCompleteEvent(IEventHandler *ev)
 		{
 			_OnCompleteEvent = ev;
@@ -55,37 +56,37 @@ namespace OCScript
 		// スクリプト文を ScriptStorage に一括読み込みします。
 		// 引数: 行区切り文字列のベクタ
 		// ※例外が発生する可能性のあるメソッドです
-		void LoadScript(const vector<string> scriptLines)
+		void LoadScript(const vector<wstring> scriptLines)
 		{
 			vector<Line> lines;
 
 			int lineIndex = 1;
 			for (auto scriptLine : scriptLines)
 			{
-				smatch m1, m2;
+				wsmatch m1, m2;
 
 				// 空行でない
-				if (!regex_match(scriptLine, regex("^[ \t]*$")))
+				if (!regex_match(scriptLine, wregex(L"^[ \t]*$")))
 				{
-					m1 = smatch();
+					m1 = wsmatch();
 
 					// 構文にマッチする
-					if (regex_match(scriptLine, m1, regex("^[ \t]*([a-zA-Z0-9._-]+)[ \t]*\\((.+)\\)[ \t]*;[ \t]*$")))
+					if (regex_match(scriptLine, m1, wregex(L"^[ \t]*([a-zA-Z0-9._-]+)[ \t]*\\((.+)\\)[ \t]*;[ \t]*$")))
 					{
-						string commandName = m1[1];
-						string paramsStr = m1[2];
+						wstring commandName = m1[1];
+						wstring paramsStr = m1[2];
 
-						vector<string> paramsSourceVec = Utility::StrSplit(paramsStr, ',');
-						vector<string> paramsDestVec;
+						vector<wstring> paramsSourceVec = Utility::StrSplit(paramsStr, ',');
+						vector<wstring> paramsDestVec;
 						int paramIndex = 1;
 						for (auto paramToken : paramsSourceVec)
 						{
-							string content;
-							m1 = smatch();
-							m2 = smatch();
+							wstring content;
+							m1 = wsmatch();
+							m2 = wsmatch();
 
 							// クォート付きの引数である
-							if (regex_match(paramToken, m1, regex("^[ \t]*\"(.*)\"[ \t]*$")) || regex_match(paramToken, m2, regex("^[ \t]*\'(.*)\'[ \t]*$")))
+							if (regex_match(paramToken, m1, wregex(L"^[ \t]*\"(.*)\"[ \t]*$")) || regex_match(paramToken, m2, wregex(L"^[ \t]*\'(.*)\'[ \t]*$")))
 							{
 								if (!m1.empty())
 									content = m1[1];
@@ -96,8 +97,8 @@ namespace OCScript
 							}
 							else
 							{
-								m1 = smatch();
-								if (!regex_match(paramToken, m1, regex("^[ \t]*([^ \t]*)[ \t]*$")))
+								m1 = wsmatch();
+								if (!regex_match(paramToken, m1, wregex(L"^[ \t]*([^ \t]*)[ \t]*$")))
 									throw exception(("引数の解析時にエラーが発生しました。(行: " + to_string(lineIndex) + ", 引数番号: " + to_string(paramIndex) + ")").c_str());
 
 								content = m1[1];
@@ -114,13 +115,12 @@ namespace OCScript
 			}
 			_ScriptStorage = vector<Line>(lines);
 		}
-
 		// スクリプト文を ScriptStorage に一括読み込みします。
 		// 引数: スクリプトの文字列
 		// ※例外が発生する可能性のあるメソッドです
-		void LoadScript(const string scriptText)
+		void LoadScript(const wstring scriptText)
 		{
-			vector<string> scriptLines = Utility::StrSplit(scriptText, '\n');
+			vector<wstring> scriptLines = Utility::StrSplit(scriptText, L'\n');
 			LoadScript(scriptLines);
 		}
 

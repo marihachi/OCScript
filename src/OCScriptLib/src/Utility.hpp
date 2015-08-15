@@ -12,11 +12,11 @@ namespace OCScript
 	public:
 		// 区切り文字により文字列をスプリットします。
 		// 引数: ソース文字列, 区切り文字
-		static vector<string> StrSplit(const string &src, char delimiter)
+		static vector<wstring> StrSplit(const wstring &src, wchar_t delimiter)
 		{
-			stringstream ss(src);
-			vector<string> items;
-			string item;
+			wstringstream ss(src);
+			vector<wstring> items;
+			wstring item;
 
 			while (getline(ss, item, delimiter))
 				items.push_back(item);
@@ -26,12 +26,12 @@ namespace OCScript
 
 		// 文字列を置換して新しい文字列として返します。
 		// 引数: ソース文字列, 対象の文字列, 置換後の文字列
-		static string StrReplace(const string src, const string oldVal, const string newVal)
+		static wstring StrReplace(const wstring src, const wstring oldVal, const wstring newVal)
 		{
 			auto temp = src;
-			string::size_type pos(temp.find(oldVal));
+			wstring::size_type pos(temp.find(oldVal));
 
-			while (pos != string::npos)
+			while (pos != wstring::npos)
 			{
 				temp.replace(pos, oldVal.length(), newVal);
 				pos = temp.find(oldVal, pos + newVal.length());
