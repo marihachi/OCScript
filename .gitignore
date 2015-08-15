@@ -31,5 +31,6 @@
 *.sln
 *.sdf
 *.suo
-Debug/
 *.opensdf
+*.vcxproj.user
+Debug/
