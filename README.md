@@ -4,15 +4,15 @@ It's assumed to be used for the game.
 
 ## Usage
 ### 1. Create a class that implements the ICommand
-#### Require implementation Methods
+#### The following methods require to implement:
 ```C++
-wstring GetCommandName(); // コマンド名を設定します
-void Access(AccessEventArgs *e, vector<wstring> params); // コマンドの実行タイミングに呼ばれます
+wstring GetCommandName(); //コマンド名を設定します
+void Access(AccessEventArgs *e, vector<wstring> params); //コマンドの実行タイミングに呼ばれます
 ```
-#### Not require implementation Methods
+#### The following methods not require to implement:
 ```C++
-void PreUpdate(); // Update より前のタイミングに呼ばれます
-void Update(); // 更新のタイミングに呼ばれます
+void PreUpdate(); //Updateより前のタイミングに呼ばれます
+void Update(); //更新のタイミングに呼ばれます
 ```
 [DetailSample](https://github.com/marihachi/OCScript/blob/master/src/OCScriptSample/src/Start.cpp#L6-L34).
 ## License
