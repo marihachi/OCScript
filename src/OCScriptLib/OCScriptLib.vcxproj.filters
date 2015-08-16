@@ -19,10 +19,10 @@
     <ClInclude Include="src\OCScript.hpp">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utility.hpp">
+    <ClInclude Include="src\IEventHandler.hpp">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\IEventHandler.hpp">
+    <ClInclude Include="src\StringUtility.hpp">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
