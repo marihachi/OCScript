@@ -92,10 +92,8 @@ namespace OCScript
 							{
 								if (!m1.empty())
 									content = m1[1];
-								else if (!m2.empty())
-									content = m2[1];
 								else
-									throw exception(("システムエラーが発生しました。マッチ結果が矛盾しています。(行: " + to_string(lineIndex) + ")").c_str());
+									content = m2[1];
 							}
 							else
 							{
