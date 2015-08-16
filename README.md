@@ -7,7 +7,7 @@ It's assumed to be used for the game.
 #### Require implementation
 ```C++
 wstring GetCommandName(); // コマンド名を設定します
-void Access(OCScript::AccessEventArgs *e, vector<wstring> params); // コマンドが実行されたタイミングに呼ばれます
+void Access(AccessEventArgs *e, vector<wstring> params); // コマンドが実行されたタイミングに呼ばれます
 ```
 #### Not require implementation
 ```C++
