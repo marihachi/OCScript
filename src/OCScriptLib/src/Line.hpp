@@ -12,6 +12,7 @@ namespace OCScript
 		wstring _CommandName;
 		vector<wstring> _Params;
 	public:
+
 		// コンストラクタ
 		// 引数: 命令名, パラメータ
 		Line(wstring commandName, vector<wstring> params)

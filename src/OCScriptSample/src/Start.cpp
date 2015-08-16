@@ -8,6 +8,7 @@ class Test : public OCScript::ICommand
 private:
 	Test() { }
 public:
+
 	static Test& GetInstance()
 	{
 		static Test instance;
@@ -25,6 +26,9 @@ public:
 		wcout << L"引数一覧:" << endl;
 		for (auto item : params)
 			wcout << L"- " + item << endl;
+
+		auto joinedStr = OCScript::Utility::StrJoin(params, L"|");
+		wcout << L"連結テスト: " + joinedStr << endl;
 	}
 };
 
