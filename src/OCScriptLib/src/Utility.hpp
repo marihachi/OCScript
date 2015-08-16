@@ -21,7 +21,7 @@ namespace OCScript
 
 			while (getline(ss, item, delimiter))
 				items.push_back(item);
-			
+
 			return items;
 		}
 
