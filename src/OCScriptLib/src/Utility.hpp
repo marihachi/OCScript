@@ -10,6 +10,7 @@ namespace OCScript
 	class Utility
 	{
 	public:
+
 		// 区切り文字により文字列をスプリットします。
 		// 引数: ソース文字列, 区切り文字
 		static vector<wstring> StrSplit(const wstring &src, wchar_t delimiter)
@@ -20,8 +21,25 @@ namespace OCScript
 
 			while (getline(ss, item, delimiter))
 				items.push_back(item);
-
+			
 			return items;
+		}
+
+		// 区切り文字により文字列を連結します。
+		// 引数: ソース文字列, 区切り文字
+		static wstring StrJoin(const vector<wstring> &src, wstring delimiter)
+		{
+			wstring dest;
+
+			for (auto it = src.begin(); it != src.end(); it++)
+			{
+				dest += *it;
+
+				if (it != src.end() - 1)
+					dest += delimiter;
+			}
+
+			return dest;
 		}
 
 		// 文字列を置換して新しい文字列として返します。
