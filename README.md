@@ -1,5 +1,5 @@
 # OCScript
-Original Command Script for C++
+Original Command Script for C++  
 It's assumed to be used for the game.
 
 ## Usage
