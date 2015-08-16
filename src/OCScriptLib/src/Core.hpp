@@ -8,7 +8,7 @@ using namespace std;
 #include "IEventHandler.hpp"
 #include "ICommand.hpp"
 #include "Line.hpp"
-#include "Utility.hpp"
+#include "StringUtility.hpp"
 
 namespace OCScript
 {
