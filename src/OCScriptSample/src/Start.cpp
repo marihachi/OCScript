@@ -3,32 +3,60 @@
 
 #include "../../OCScriptLib/src/OCScript.hpp"
 
-class Test : public OCScript::ICommand
+class SampleCommand1 : public OCScript::ICommand
 {
-private:
-	Test() { }
+public: static SampleCommand1& GetInstance() { static SampleCommand1 instance; return instance; }
+private: SampleCommand1() { }
+
 public:
-
-	static Test& GetInstance()
-	{
-		static Test instance;
-		return instance;
-	}
-
 	wstring GetCommandName()
 	{
-		return L"Test";
+		return L"SampleCommand1";
 	}
 
 	void Access(OCScript::AccessEventArgs *e, vector<wstring> params)
 	{
-		wcout << L"Testが呼び出されました" << endl;
+		wcout << L"SampleCommand1が呼び出されました" << endl;
 		wcout << L"引数一覧:" << endl;
 		for (auto item : params)
 			wcout << L"- " + item << endl;
+	}
 
-		auto joinedStr = OCScript::StringUtility::Join(params, L"|");
-		wcout << L"連結テスト: " + joinedStr << endl;
+	void PreUpdate()
+	{
+		wcout << L"SampleCommand1 前更新処理" << endl;
+	}
+
+	void Update()
+	{
+		wcout << L"SampleCommand1 本更新処理" << endl;
+	}
+};
+
+class SampleCommand2 : public OCScript::ICommand
+{
+public: static SampleCommand2& GetInstance() { static SampleCommand2 instance; return instance; }
+private: SampleCommand2() { }
+
+public:
+	wstring GetCommandName()
+	{
+		return L"SampleCommand2";
+	}
+
+	void Access(OCScript::AccessEventArgs *e, vector<wstring> params)
+	{
+		wcout << L"SampleCommand2が呼び出されたよ！" << endl;
+	}
+
+	void PreUpdate()
+	{
+		wcout << L"SampleCommand2 前更新処理" << endl;
+	}
+
+	void Update()
+	{
+		wcout << L"SampleCommand2 本更新処理" << endl;
 	}
 };
 
@@ -69,7 +97,8 @@ int wmain(int argc, wchar_t* argv[])
 		try
 		{
 			// コマンド登録
-			osc.AddCommand(&Test::GetInstance());
+			osc.AddCommand(&SampleCommand1::GetInstance());
+			osc.AddCommand(&SampleCommand2::GetInstance());
 
 			// スクリプトの読み込み
 			osc.LoadScript(rawLines);
@@ -78,6 +107,10 @@ int wmain(int argc, wchar_t* argv[])
 			{
 				// 現在の行を実行
 				osc.ExecuteCurrentLine();
+
+				// 更新(描画処理や計算処理などを含む)
+				osc.TriggerPreUpdate();
+				osc.TriggerUpdate();
 			}
 		}
 		catch (exception ex)

@@ -63,6 +63,8 @@ namespace OCScript
 			int lineIndex = 1;
 			for (auto scriptLine : scriptLines)
 			{
+				scriptLine = StringUtility::Replace(scriptLine, L"\n", L"");
+
 				wsmatch m1, m2;
 
 				// 空行でない
@@ -154,6 +156,24 @@ namespace OCScript
 				throw exception("未定義のスクリプト文が呼び出されました。");
 
 			_IsEndOfScript = (_CurrentLineIndex > _ScriptStorage.size() - 1);
+		}
+
+		// このメソッドを呼び出すと ICommand を実装した全てのクラスの PreUpdate メソッドが呼び出されます。
+		void TriggerPreUpdate()
+		{
+			for (auto command : _Commands)
+			{
+				command->PreUpdate();
+			}
+		}
+
+		// このメソッドを呼び出すと ICommand を実装した全てのクラスの Update メソッドが呼び出されます。
+		void TriggerUpdate()
+		{
+			for (auto command : _Commands)
+			{
+				command->Update();
+			}
 		}
 	};
 }
