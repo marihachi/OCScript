@@ -11,8 +11,8 @@ void Access(AccessEventArgs *e, vector<wstring> params);
 ```
 #### The following methods not require to implement:
 ```C++
-void PreUpdate();
-void Update();
+void PreUpdate(void);
+void Update(void);
 ```
 [DetailSample](https://github.com/marihachi/OCScript/blob/master/src/OCScriptSample/src/Start.cpp#L6-L34).
 ## License
