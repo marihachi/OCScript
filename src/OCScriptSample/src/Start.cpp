@@ -27,7 +27,7 @@ public:
 		for (auto item : params)
 			wcout << L"- " + item << endl;
 
-		auto joinedStr = OCScript::Utility::StrJoin(params, L"|");
+		auto joinedStr = OCScript::StringUtility::Join(params, L"|");
 		wcout << L"連結テスト: " + joinedStr << endl;
 	}
 };

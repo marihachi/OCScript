@@ -76,7 +76,7 @@ namespace OCScript
 						wstring commandName = m1[1];
 						wstring paramsStr = m1[2];
 
-						vector<wstring> paramsSourceVec = Utility::StrSplit(paramsStr, ',');
+						vector<wstring> paramsSourceVec = StringUtility::Split(paramsStr, ',');
 						vector<wstring> paramsDestVec;
 						int paramIndex = 1;
 						for (auto paramToken : paramsSourceVec)
@@ -121,7 +121,7 @@ namespace OCScript
 		// ※例外が発生する可能性のあるメソッドです
 		void LoadScript(const wstring scriptText)
 		{
-			vector<wstring> scriptLines = Utility::StrSplit(scriptText, L'\n');
+			vector<wstring> scriptLines = StringUtility::Split(scriptText, L'\n');
 			LoadScript(scriptLines);
 		}
 
